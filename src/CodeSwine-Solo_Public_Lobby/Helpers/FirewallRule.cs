@@ -2,12 +2,15 @@
 using System;
 using System.Windows;
 
-namespace CodeSwine_Solo_Public_Lobby.Helpers
+namespace SoloPublicLobbyGTA5.Helpers
 {
     public class FirewallRule
     {
+        private static readonly string firewallInboundRuleName = "SoloPublicLobbyGTA5 - Inbound";
+        private static readonly string firewallOutboundRuleName = "SoloPublicLobbyGTA5 - Outbound";
+
         /// <summary>
-        /// Sets, Removes or Toggles CodeSwine Outbound firewall rules.
+        /// Sets, Removes or Toggles Outbound firewall rules.
         /// </summary>
         /// <param name="addresses">Scope to block.</param>
         /// <param name="enabled">True to enable, false to disable the rule.</param>
@@ -24,7 +27,7 @@ namespace CodeSwine_Solo_Public_Lobby.Helpers
                 firewallRule.InterfaceTypes = "All";
                 firewallRule.RemoteAddresses = addresses;
                 firewallRule.LocalPorts = "6672";
-                firewallRule.Name = "GTA5 CodeSwine - Private Public Lobby Outbound";
+                firewallRule.Name = firewallOutboundRuleName;
                 firewallRule.Direction = NET_FW_RULE_DIRECTION_.NET_FW_RULE_DIR_OUT;
                 INetFwPolicy2 firewallPolicy = (INetFwPolicy2)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FwPolicy2"));
 
@@ -46,7 +49,7 @@ namespace CodeSwine_Solo_Public_Lobby.Helpers
         }
 
         /// <summary>
-        /// Sets, Removes or Toggles CodeSwine Inbound firewall rules.
+        /// Sets, Removes or Toggles Inbound firewall rules.
         /// </summary>
         /// <param name="addresses">Scope to block.</param>
         /// <param name="enabled">True to enable, false to disable the rule.</param>
@@ -69,7 +72,7 @@ namespace CodeSwine_Solo_Public_Lobby.Helpers
                 Console.WriteLine(addresses);
 
                 firewallRule.LocalPorts = "6672";
-                firewallRule.Name = "GTA5 CodeSwine - Private Public Lobby Inbound";
+                firewallRule.Name = firewallInboundRuleName;
                 firewallRule.Direction = NET_FW_RULE_DIRECTION_.NET_FW_RULE_DIR_IN;
                 INetFwPolicy2 firewallPolicy = (INetFwPolicy2)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FwPolicy2"));
 
@@ -90,21 +93,21 @@ namespace CodeSwine_Solo_Public_Lobby.Helpers
         }
 
         /// <summary>
-        /// Removes CodeSwine Inbound & Outbound firewall rules at program startup.
+        /// Inbound & Outbound firewall rules at program startup.
         /// </summary>
         public static void DeleteRules()
         {
             try {
                 INetFwRule firewallRuleInbound = (INetFwRule)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FWRule"));
-                firewallRuleInbound.Name = "GTA5 CodeSwine - Private Public Lobby Inbound";
+                firewallRuleInbound.Name = firewallInboundRuleName;
 
                 INetFwRule firewallRuleOutbound = (INetFwRule)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FWRule"));
-                firewallRuleOutbound.Name = "GTA5 CodeSwine - Private Public Lobby Outbound";
+                firewallRuleOutbound.Name = firewallOutboundRuleName;
 
                 INetFwPolicy2 firewallPolicy = (INetFwPolicy2)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FwPolicy2"));
 
-                firewallPolicy.Rules.Remove(firewallRuleInbound.Name);
-                firewallPolicy.Rules.Remove(firewallRuleOutbound.Name);
+                firewallPolicy.Rules.Remove(firewallInboundRuleName);
+                firewallPolicy.Rules.Remove(firewallOutboundRuleName);
             } catch (Exception e)
             {
                 ErrorLogger.LogException(e);

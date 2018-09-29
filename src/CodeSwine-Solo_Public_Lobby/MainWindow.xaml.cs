@@ -1,6 +1,6 @@
-﻿using CodeSwine_Solo_Public_Lobby.DataAccess;
-using CodeSwine_Solo_Public_Lobby.Helpers;
-using CodeSwine_Solo_Public_Lobby.Models;
+﻿using SoloPublicLobbyGTA5.DataAccess;
+using SoloPublicLobbyGTA5.Helpers;
+using SoloPublicLobbyGTA5.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +19,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CodeSwine_Solo_Public_Lobby
+namespace SoloPublicLobbyGTA5
 {
     public partial class MainWindow : Window
     {
@@ -135,14 +135,14 @@ namespace CodeSwine_Solo_Public_Lobby
         void UpdateNotActive()
         {
             btnEnableDisable.Background = ColorBrush.Red;
-            image4.Source = new BitmapImage(new Uri("/CodeSwine-Solo_Public_Lobby;component/ImageResources/unlocked.png", UriKind.Relative));
+            image4.Source = new BitmapImage(new Uri("/SoloPublicLobbyGTA5;component/ImageResources/unlocked.png", UriKind.Relative));
             lblLock.Content = "Rules not active." + Environment.NewLine + "Click to activate!";
         }
 
         void UpdateActive()
         {
             btnEnableDisable.Background = ColorBrush.Green;
-            image4.Source = new BitmapImage(new Uri("/CodeSwine-Solo_Public_Lobby;component/ImageResources/locked.png", UriKind.Relative));
+            image4.Source = new BitmapImage(new Uri("/SoloPublicLobbyGTA5;component/ImageResources/locked.png", UriKind.Relative));
             lblLock.Content = "Rules active." + Environment.NewLine + "Click to deactivate!";
         }
 

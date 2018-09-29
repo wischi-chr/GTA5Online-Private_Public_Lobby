@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 
-namespace CodeSwine_Solo_Public_Lobby.Helpers
+namespace SoloPublicLobbyGTA5.Helpers
 {
     public class ColorBrush
     {

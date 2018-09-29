@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace CodeSwine_Solo_Public_Lobby
+namespace SoloPublicLobbyGTA5
 {
     /// <summary>
     /// Interaction logic for App.xaml

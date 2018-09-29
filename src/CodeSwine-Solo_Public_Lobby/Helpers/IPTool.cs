@@ -5,7 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CodeSwine_Solo_Public_Lobby.Helpers
+namespace SoloPublicLobbyGTA5.Helpers
 {
     public class IPTool
     {

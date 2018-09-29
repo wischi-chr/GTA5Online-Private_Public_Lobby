@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace CodeSwine_Solo_Public_Lobby.Helpers
+namespace SoloPublicLobbyGTA5.Helpers
 {
     public class ErrorLogger
     {

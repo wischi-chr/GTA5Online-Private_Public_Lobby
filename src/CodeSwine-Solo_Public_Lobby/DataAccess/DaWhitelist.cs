@@ -1,12 +1,12 @@
-﻿using CodeSwine_Solo_Public_Lobby.Helpers;
-using CodeSwine_Solo_Public_Lobby.Models;
+﻿using SoloPublicLobbyGTA5.Helpers;
+using SoloPublicLobbyGTA5.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 
-namespace CodeSwine_Solo_Public_Lobby.DataAccess
+namespace SoloPublicLobbyGTA5.DataAccess
 {
     public class DaWhitelist
     {
