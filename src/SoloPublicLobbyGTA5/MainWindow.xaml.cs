@@ -6,18 +6,15 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
-using SoloPublicLobbyGTA5.DataAccess;
 using SoloPublicLobbyGTA5.Helpers;
-using SoloPublicLobbyGTA5.Models;
 
 namespace SoloPublicLobbyGTA5
 {
     public partial class MainWindow : Window
     {
+        private readonly WhitelistFile whitelist = new WhitelistFile("whitelist.txt");
         private IPTool iPTool = new IPTool();
-        private DaWhitelist whiteList = new DaWhitelist();
         private List<IPAddress> addresses = new List<IPAddress>();
-        private MWhitelist mWhitelist = new MWhitelist();
 
         private bool set = false;
         private bool active = false;
@@ -36,16 +33,12 @@ namespace SoloPublicLobbyGTA5
         void Init()
         {
             lblYourIPAddress.Content += " " + iPTool.IpAddress + ".";
-            addresses = DaWhitelist.ReadIPsFromJSON();
+            addresses = whitelist.Load().ToList();
             lsbAddresses.ItemsSource = addresses;
-            foreach (IPAddress ip in addresses)
-            {
-                mWhitelist.Ips.Add(ip.ToString());
-            }
             SetIpCount();
         }
 
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        private void Add_Click(object sender, RoutedEventArgs e)
         {
             if (IPAddress.TryParse(txbIpToAdd.Text, out var ip))
             {
@@ -54,8 +47,7 @@ namespace SoloPublicLobbyGTA5
 
                 addresses.Add(ip);
                 lsbAddresses.Items.Refresh();
-                mWhitelist.Ips.Add(txbIpToAdd.Text);
-                DaWhitelist.SaveToJson(mWhitelist);
+                whitelist.Save(addresses);
                 set = false; active = false;
                 FirewallRule.DeleteRules();
                 SetIpCount();
@@ -63,14 +55,13 @@ namespace SoloPublicLobbyGTA5
             }
         }
 
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        private void Delete_Click(object sender, RoutedEventArgs e)
         {
             if (lsbAddresses.SelectedIndex != -1)
             {
-                mWhitelist.Ips.Remove(lsbAddresses.SelectedItem.ToString());
                 addresses.Remove(IPAddress.Parse(lsbAddresses.SelectedItem.ToString()));
                 lsbAddresses.Items.Refresh();
-                DaWhitelist.SaveToJson(mWhitelist);
+                whitelist.Save(addresses);
                 set = false; active = false;
                 FirewallRule.DeleteRules();
                 SetIpCount();
@@ -83,7 +74,7 @@ namespace SoloPublicLobbyGTA5
             lblAmountIPs.Content = addresses.Count() + " IPs whitelisted!";
         }
 
-        private void btnEnableDisable_Click(object sender, RoutedEventArgs e)
+        private void EnableDisable_Click(object sender, RoutedEventArgs e)
         {
             SetRules();
         }
