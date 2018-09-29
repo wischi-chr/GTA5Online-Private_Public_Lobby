@@ -39,29 +39,5 @@ namespace SoloPublicLobbyGTA5.Helpers
             }
             return ip;
         }
-
-        /// <summary>
-        /// Validates IP Address.
-        /// </summary>
-        /// <param name="ipString"></param>
-        /// <returns>Bool True or False.</returns>
-        public static bool ValidateIPv4(string ipString)
-        {
-            if (String.IsNullOrWhiteSpace(ipString))
-            {
-                return false;
-            }
-
-            string[] splitValues = ipString.Split('.');
-
-            if (splitValues.Length != 4)
-            {
-                return false;
-            }
-
-            byte tempForParsing;
-
-            return splitValues.All(r => byte.TryParse(r, out tempForParsing));
-        }
     }
 }

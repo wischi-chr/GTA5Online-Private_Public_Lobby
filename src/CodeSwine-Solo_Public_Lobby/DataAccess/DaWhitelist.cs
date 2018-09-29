@@ -25,9 +25,12 @@ namespace SoloPublicLobbyGTA5.DataAccess
             {
                 string json = r.ReadToEnd();
                 MWhitelist whitelist = JsonConvert.DeserializeObject<MWhitelist>(json);
+
+                //Todo: fix with linq
                 foreach (string address in whitelist.Ips)
                 {
-                    if (IPTool.ValidateIPv4(address.ToString())) addresses.Add(IPAddress.Parse(address));
+                    if (IPAddress.TryParse(address, out var ip))
+                        addresses.Add(ip);
                 }
             }
             return addresses;

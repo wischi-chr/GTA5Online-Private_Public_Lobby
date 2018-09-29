@@ -1,23 +1,14 @@
-﻿using SoloPublicLobbyGTA5.DataAccess;
-using SoloPublicLobbyGTA5.Helpers;
-using SoloPublicLobbyGTA5.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Interop;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using SoloPublicLobbyGTA5.DataAccess;
+using SoloPublicLobbyGTA5.Helpers;
+using SoloPublicLobbyGTA5.Models;
 
 namespace SoloPublicLobbyGTA5
 {
@@ -56,25 +47,25 @@ namespace SoloPublicLobbyGTA5
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            if(IPTool.ValidateIPv4(txbIpToAdd.Text))
+            if (IPAddress.TryParse(txbIpToAdd.Text, out var ip))
             {
-                if(!addresses.Contains(IPAddress.Parse(txbIpToAdd.Text)))
-                {
-                    addresses.Add(IPAddress.Parse(txbIpToAdd.Text));
-                    lsbAddresses.Items.Refresh();
-                    mWhitelist.Ips.Add(txbIpToAdd.Text);
-                    DaWhitelist.SaveToJson(mWhitelist);
-                    set = false; active = false;
-                    FirewallRule.DeleteRules();
-                    SetIpCount();
-                    UpdateNotActive();
-                }
+                if (addresses.Contains(ip))
+                    return;
+
+                addresses.Add(ip);
+                lsbAddresses.Items.Refresh();
+                mWhitelist.Ips.Add(txbIpToAdd.Text);
+                DaWhitelist.SaveToJson(mWhitelist);
+                set = false; active = false;
+                FirewallRule.DeleteRules();
+                SetIpCount();
+                UpdateNotActive();
             }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            if(lsbAddresses.SelectedIndex != -1)
+            if (lsbAddresses.SelectedIndex != -1)
             {
                 mWhitelist.Ips.Remove(lsbAddresses.SelectedItem.ToString());
                 addresses.Remove(IPAddress.Parse(lsbAddresses.SelectedItem.ToString()));
@@ -123,7 +114,7 @@ namespace SoloPublicLobbyGTA5
             }
 
             // If they are active and set.
-            if(active && set)
+            if (active && set)
             {
                 FirewallRule.CreateInbound(remoteAddresses, false, true);
                 FirewallRule.CreateOutbound(remoteAddresses, false, true);
@@ -147,7 +138,7 @@ namespace SoloPublicLobbyGTA5
         }
 
         [DllImport("User32.dll")]
-            private static extern bool RegisterHotKey(
+        private static extern bool RegisterHotKey(
         [In] IntPtr hWnd,
         [In] int id,
         [In] uint fsModifiers,
@@ -186,7 +177,7 @@ namespace SoloPublicLobbyGTA5
             const uint MOD_CTRL = 0x0002;
             if (!RegisterHotKey(helper.Handle, HOTKEY_ID, MOD_CTRL, VK_F10))
             {
-                
+
             }
         }
 
