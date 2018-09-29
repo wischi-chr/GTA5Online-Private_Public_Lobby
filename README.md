@@ -1,11 +1,12 @@
-# GTA5Online-Private_Public_Lobby
+# GTA5 Online: Solo public lobby
 A tool to setup your GTA5 firewall rules easily. Adding IPs to your whitelist enables your friends to stay in your session.
 
 ![demo](https://i.imgur.com/hZsO7xM.png)
 
 ## Setup:
-1. [Download the release and extract all files](https://github.com/CodeSwine/GTA5Online-Private_Public_Lobby/releases/download/1.0.1/CodeSwine.GTA5O.-.Private.Public.Lobby.V1.0.1.zip).
-2. Inside the folder start the .EXE as administrator.
+1. [Download the latest release](https://github.com/wischi-chr/SoloPublicLobbyGTA5/releases).
+2. Inside the folder start `SoloPublicLobbyGTA5.exe` and press yes on UAC  
+   _(This tool need admin rights to configure firewall rules)_
 
 ## How-to (SOLO lobby):
 1. Start the program as admin with Windows firewall enabled.
