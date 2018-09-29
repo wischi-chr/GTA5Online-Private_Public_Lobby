@@ -4,8 +4,8 @@ A tool to setup your GTA5 firewall rules easily. Adding IPs to your whitelist en
 ![demo](https://i.imgur.com/hZsO7xM.png)
 
 ## Setup:
-1. [Download the latest release](https://github.com/wischi-chr/SoloPublicLobbyGTA5/releases).
-2. Inside the folder start `SoloPublicLobbyGTA5.exe` and press yes on UAC  
+1. [Download the latest release of SoloPublicLobbyGTA5.exe](https://github.com/wischi-chr/SoloPublicLobbyGTA5/releases).
+2. Run it and press yes on UAC  
    _(This tool need admin rights to configure firewall rules)_
 
 ## How-to (SOLO lobby):
