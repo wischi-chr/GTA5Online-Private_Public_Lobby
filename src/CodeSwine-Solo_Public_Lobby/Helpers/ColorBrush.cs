@@ -2,22 +2,11 @@
 
 namespace SoloPublicLobbyGTA5.Helpers
 {
-    public class ColorBrush
+    public static class ColorBrush
     {
-        public static SolidColorBrush Red {
-            get { return new SolidColorBrush(Color.FromArgb(255, (byte)220, (byte)53, (byte)69)); }
-        }
-
-        public static SolidColorBrush Blue {
-            get { return new SolidColorBrush(Color.FromArgb(255, (byte)0, (byte)123, (byte)255)); }
-        }
-
-        public static SolidColorBrush Green {
-            get { return new SolidColorBrush(Color.FromArgb(255, (byte)40, (byte)167, (byte)69)); }
-        }
-
-        public static SolidColorBrush Yellow {
-            get { return new SolidColorBrush(Color.FromArgb(255, (byte)255, (byte)193, (byte)7)); }
-        }
+        public static SolidColorBrush Red { get; } = new SolidColorBrush(Color.FromRgb(220, 53, 69));
+        public static SolidColorBrush Blue { get; } = new SolidColorBrush(Color.FromRgb(0, 123, 255));
+        public static SolidColorBrush Green { get; } = new SolidColorBrush(Color.FromRgb(40, 167, 69));
+        public static SolidColorBrush Yellow { get; } = new SolidColorBrush(Color.FromRgb(255, 193, 7));
     }
 }
