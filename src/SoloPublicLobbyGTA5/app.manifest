@@ -17,7 +17,6 @@
             für die Anwendung erforderlich ist.
         -->
         <requestedExecutionLevel level="requireAdministrator" uiAccess="false" />
-        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
       </requestedPrivileges>
       <applicationRequestMinimum>
         <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
